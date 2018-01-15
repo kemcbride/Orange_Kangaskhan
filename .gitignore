@@ -1,0 +1,6 @@
+*.html
+*.log.txt
+*.log
+*.pyc
+*.png
+config.json
