@@ -4,3 +4,4 @@
 *.pyc
 *.png
 config.json
+user.json

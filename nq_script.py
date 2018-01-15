@@ -2,6 +2,7 @@
 
 from __future__ import print_function
 import logging
+import json
 import os
 
 LOGDIR = '/home/kelly/github/neolib-parent/Orange_Kangaskhan/neoquest'
@@ -20,7 +21,10 @@ def main():
     stderr.setLevel(logging.INFO)
     logger.addHandler(logging.StreamHandler())
 
-    ok = User('orange_kangaskhan', '1garura1')
+    with open('user.json') as f:
+        login = json.load(f)
+
+    ok = User(login['username'], login['password'])
     if not ok.loggedIn:
         ok.login()
 
