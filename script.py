@@ -12,6 +12,7 @@ LOGDIR = '/home/kelly/github/neolib-parent/Orange_Kangaskhan/'
 from neolib.user.User import User
 from neolib.stock.Portfolio import Portfolio
 from neolib.stock.BargainStocks import BargainStocks
+from neolib.daily.GiantOmelette import GiantOmelette
 
 
 UPPER_LIMIT = 15 # inclusive
@@ -50,6 +51,10 @@ def main():
     ok.bank.load()
     ok.bank.collectInterest()
     logger.info('NP before transactions: {}'.format(ok.nps))
+
+    # Then let's get some Om
+    gom = GiantOmelette(ok)
+    gom.play() # we just kinda trust that this works (it does, return a message...)
 
     p = Portfolio(ok)
     bs = BargainStocks(ok)
