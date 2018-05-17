@@ -9,6 +9,7 @@ import os
 import json
 
 from neolib.user.User import User
+from neolib.user.Pet import Pet, get_pets
 from neolib.item.Item import Item
 
 
@@ -30,6 +31,10 @@ def main():
 
     o_k.inventory.load()
     items = o_k.inventory.items
+
+    darling_eunice = Pet(o_k)
+    print darling_eunice.name
+    mypets = get_pets(o_k)
     raise Exception('dummy exception for ipdb shell')
 
 

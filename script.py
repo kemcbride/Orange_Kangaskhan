@@ -23,7 +23,7 @@ DAILY_LIST = [
         ]
 
 UPPER_LIMIT = 15 # inclusive
-SELL_THRESHOLD = 0.8
+SELL_THRESHOLD = 1.2
 SELL_AMOUNT = 1000
 
 
@@ -65,6 +65,8 @@ def try_to_do_stocks(usr, logger):
     sellable = [s for s in p.stocks if s.percent_change >= SELL_THRESHOLD]
     for s in sellable:
         logger.info('Selling {}, {}'.format(s.ticker, s.percent_change))
+        # TODO: It's identifying what to sell properly but there's a bit of an iffy:
+        # I wanat to know HOW MUCH i sold, and how much I made, and how much I have lft
         p.sell(s.ticker, SELL_AMOUNT)
     if len(sellable) == 0:
         logger.info("Nothing worth selling")
