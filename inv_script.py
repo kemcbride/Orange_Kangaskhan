@@ -9,7 +9,7 @@ import os
 import json
 
 from neolib.user.User import User
-from neolib.user.Pet import Pet, get_pets
+from neolib.user.Pet import Pet, get_pet_names
 from neolib.item.Item import Item
 
 
@@ -34,7 +34,8 @@ def main():
 
     darling_eunice = Pet(o_k)
     print darling_eunice.name
-    mypets = get_pets(o_k)
+    mypets = get_pet_names(o_k)
+    print mypets
     raise Exception('dummy exception for ipdb shell')
 
 
