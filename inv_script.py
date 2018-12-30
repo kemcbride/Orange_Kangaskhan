@@ -10,7 +10,14 @@ from neolib.user.User import User
 from neolib.item.Item import Item
 
 
+DEFAULT_LOGDIR = '/home/kelly/github/neolib-parent/Orange_Kangaskhan/'
+
+
 def main():
+    with open('user.json') as pwd_file:
+        user_config = json.load(pwd_file)
+    LOGDIR = user_config.get("logdir", DEFAULT_LOGDIR)
+
     """Set up logging in main, not global scope."""
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.INFO) # - this is the line I needed to get logging to work!
@@ -26,15 +33,12 @@ def main():
     stderr.setLevel(logging.INFO)
     logger.addHandler(logging.StreamHandler())
 
-    with open('user.json') as pwd_file:
-        login = json.load(pwd_file)
-
-    o_k = User(login['username'], login['password'])
+    o_k = User(user_config['username'], user_config['password'])
     o_k.login()
 
     o_k.inventory.load()
     items = o_k.inventory.items
-    raise Exception('Dummy Exception to drop into pdb shell')
+    print(items)
 
 
 if __name__ == '__main__':

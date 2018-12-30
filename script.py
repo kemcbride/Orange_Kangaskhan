@@ -4,9 +4,7 @@ import logging
 import os
 import json
 
-
-LOGDIR = '/home/kelly/github/neolib-parent/Orange_Kangaskhan/'
-
+DEFAULT_LOGDIR = '/home/kelly/github/neolib-parent/Orange_Kangaskhan/'
 
 
 from neolib.user.User import User
@@ -25,6 +23,10 @@ def sort_and_filter(stock_list):
 
 
 def main():
+    with open('user.json') as f:
+        user_config = json.load(f)
+    LOGDIR = user_config.get("logdir", DEFAULT_LOGDIR)
+
     # Set up logging in main, not global scope.
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.INFO) # - this is the line I needed to get logging to work!
@@ -40,10 +42,8 @@ def main():
     stderr.setLevel(logging.INFO)
     logger.addHandler(logging.StreamHandler())
 
-    with open('user.json') as f:
-        login = json.load(f)
 
-    ok = User(login['username'],login['password'])
+    ok = User(user_config['username'],user_config['password'])
     ok.login()
 
     # Start off your day by collecting interest at the bank
