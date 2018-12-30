@@ -80,7 +80,6 @@ def main():
         logger.info("Not buying anything")
 
     # And we sell SELL_AMOUNT of anything over SELL_THRESHOLD
-    import ipdb; ipdb.set_trace()
     sellable = [s for s in p.stocks if s.percent_change >= SELL_THRESHOLD]
     for s in sellable:
         logger.info('Selling {}, {}'.format(s.ticker, s.percent_change))
@@ -88,7 +87,6 @@ def main():
     if len(sellable) == 0:
         logger.info("Nothing worth selling")
 
-    ok.login()
     ok.bank.load()
     logger.info('NP after transations: {}'.format(ok.nps))
 
